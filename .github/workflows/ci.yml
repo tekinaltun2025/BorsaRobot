@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "file:./dev.db"
+      # CI'da kimlik doğrulama ve şifreleme deterministik olsun diye sabit değerler.
+      ADMIN_PASSWORD: "ci-test-password"
+      SETTINGS_ENCRYPTION_KEY: "ci-test-encryption-key-0123456789abcdef"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Bağımlılık kurulumu
+        run: npm ci
+
+      - name: Prisma client üretimi
+        run: npx prisma generate
+
+      # Migration disiplini (iyileştirme 3.5): CI'da db push yerine
+      # migrate deploy — şema geçmişi migration dosyalarından gelir.
+      - name: Veri tabanı migration'ları + seed
+        run: npx prisma migrate deploy && npm run db:seed
+
+      - name: Tip kontrolü
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Birim testler
+        run: npm run test:run

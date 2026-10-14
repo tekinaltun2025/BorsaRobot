@@ -1,0 +1,522 @@
+// BorsaRobot — Prisma şeması
+// Kaynak: docs/ARCHITECTURE.md (Bölüm 3, 4 ve 5 model atıfları)
+//
+// NOT: Geliştirme veri tabanı SQLite'tır; SQLite Prisma'da native enum
+// desteklemediği için enum değerleri String sütunlarda saklanır ve
+// src/lib/types.ts içindeki union tiplerle tip güvenliği sağlanır.
+// Üretim PostgreSQL'e geçildiğinde sütun tipleri korunur.
+//
+// ADR-8: Tüm parasal tutarlar Decimal(18,4) olarak saklanır.
+// SQLite'ta Decimal, yine Decimal tipiyle (REAL/TEXT saklama) temsil edilir.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// HISSE & FİYAT VERİSİ
+// ============================================================
+
+/// Borsa İstanbul hisse senedi.
+model Stock {
+  id          String   @id @default(cuid())
+  /// BIST sembolü (örn. "THYAO") — benzersiz.
+  symbol      String   @unique
+  /// Şirket tam adı (örn. "Türk Hava Yolları A.O.").
+  name        String
+  /// BIST sektör sınıflandırması (örn. "Ulaştırma").
+  sector      String?
+  /// Son bilinen fiyat (TL) — Faz 2'de emir fiyat kaynağı; Faz 3'te canlı akışla güncellenir.
+  lastPrice   Decimal?
+  /// Kayıtta aktif takip edilip edilmediği.
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  priceHistory PriceHistory[]
+  watchlist    Watchlist[]
+  orders       Order[]
+  newsArticles NewsArticle[]
+  analyses     AiAnalysisLog[]
+  decisions    AiDecisionLog[]
+  portfolio    Portfolio[]
+}
+
+/// Fiyat geçmişi — grafikler, LLM girdisi ve sanal kur kaynağı (PaperTradingProvider).
+model PriceHistory {
+  id        String   @id @default(cuid())
+  stockId   String
+  stock     Stock    @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  /// Fiyatın geçerli olduğu zaman (kapanış/örnekleme anı).
+  timestamp DateTime
+  /// Açılış fiyatı.
+  open      Decimal 
+  /// En yüksek fiyat.
+  high      Decimal 
+  /// En düşük fiyat.
+  low       Decimal 
+  /// Kapanış fiyatı.
+  close     Decimal 
+  /// İşlem hacmi (lot).
+  volume    Decimal?
+
+  @@index([stockId, timestamp(sort: Desc)])
+}
+
+// ============================================================
+// HESAP & PORTFÖY
+// ============================================================
+
+/// Kullanıcı hesabı — sanal (paper) veya banka (live) bakiyesi tutar.
+///
+/// Çok-kullanıcılı yol haritası (iyileştirme 3.2): ownerId alanı bu hazırlığın
+/// ilk adımıdır — nullable'dır, mevcut tek-kullanıcılı akışları bozmaz. Tam
+/// geçişte User tablosu + FK, Portfolio.accountId ve
+/// @@unique([accountId, stockId]) eklenecektir (bkz. docs/ARCHITECTURE.md).
+model Account {
+  id          String    @id @default(cuid())
+  /// PAPER: simülasyon hesabı; LIVE: DenizBank gerçek hesap kaydı.
+  accountType String    @default("PAPER")
+  /// Hesap sahibinin kullanıcı kimliği — çok-kullanıcılı geçiş hazırlığı
+  /// (nullable: mevcut tek-kullanıcılı kurulumda boş kalır).
+  ownerId     String?
+  /// Hesap para birimi (varsayılan TRY).
+  currency    String    @default("TRY")
+  /// Kullanılabilir bakiye (bloke hariç).
+  balance     Decimal   @default(0)
+  /// Toplam bakiye (bloke dahil).
+  totalBalance Decimal  @default(0)
+  /// DenizBank hesap numarası (yalnızca LIVE hesaplar).
+  bankAccountNumber String?
+  /// DenizBank IBAN (yalnızca LIVE hesaplar).
+  iban        String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  transactions AccountTransaction[]
+
+  @@index([accountType])
+}
+
+/// Hesap hareketi — emir gerçekleştikten sonra bakiye değişim kaydı.
+model AccountTransaction {
+  id          String   @id @default(cuid())
+  accountId   String
+  account     Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  /// İlişkili emir (varsa).
+  orderId     String?
+  order       Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  /// Hareket tipi: DEPOSIT | WITHDRAWAL | BUY | SELL | FEE | KGV.
+  type        String
+  /// Hareket para birimi.
+  currency    String   @default("TRY")
+  /// Hareket tutarı (pozitif: artış, negatif: azalış).
+  amount      Decimal 
+  /// Hareket sonrası bakiye.
+  balanceAfter Decimal
+  /// Açıklama (örn. "THYAO alım emri gerçekleşti").
+  description String?
+  createdAt   DateTime @default(now())
+
+  @@index([accountId, createdAt(sort: Desc)])
+}
+
+/// Pozisyon — bir hissedeki açık pozisyon (ortalama maliyet yöntemiyle).
+model Portfolio {
+  id          String    @id @default(cuid())
+  stockId     String
+  stock       Stock     @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  /// Pozisyondaki hisse adedi (0: pozisyon kapalı).
+  quantity    Decimal   @default(0)
+  /// Ortalama maliyet (adet başına).
+  avgCost     Decimal   @default(0)
+  /// Toplam maliyet (quantity × avgCost).
+  totalCost   Decimal   @default(0)
+  /// Stop-loss tetik fiyatı (RiskService tarafından kullanılır).
+  stopLossPrice Decimal?
+  /// Take-profit tetik fiyatı.
+  takeProfitPrice Decimal?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([stockId])
+}
+
+// ============================================================
+// EMİRLER
+// ============================================================
+
+/// Emir — durum makinesi Bölüm 3.5'teki geçiş kurallarına tabidir.
+model Order {
+  id        String   @id @default(cuid())
+  /// ADR-7: Idempotency anahtarı — aynı emrin iki kez gönderilmesini engeller.
+  clientRequestId String @unique
+  /// Emir yönü: BUY | SELL.
+  side      String
+  /// Varlık türü: STOCK | CURRENCY (Faz 6: canlı döviz emirleri).
+  assetType String   @default("STOCK")
+  /// İlgili hisse kaydı — CURRENCY emirlerinde NULL (döviz emrinin Stock'u yoktur).
+  stockId   String?
+  stock      Stock?  @relation(fields: [stockId], references: [id], onDelete: SetNull)
+  /// Denormalize sembol: hisse emrinde stock.symbol, döviz emrinde döviz kodu (USD, ...).
+  /// Görünümler (toOrderView) stock ilişkisi olmadan da sembolü sunabilmek için tutulur.
+  symbol    String   @default("")
+  /// Emir miktarı (hisse adedi veya döviz tutarı).
+  quantity  Decimal
+  /// Emir para birimi.
+  currency  String   @default("TRY")
+  /// Emrin verildiği andaki referans fiyat (bilgilendirme amaçlı).
+  limitPrice Decimal?
+  /// Gerçekleşen birim fiyat.
+  filledPrice Decimal?
+  /// Gerçekleşen toplam tutar (quantity × filledPrice + masraflar).
+  filledValue Decimal?
+  /// İşlem komisyonu (TL) — AdminSettings.commissionRate ile hesaplanır.
+  commission Decimal?
+  /// Durum makinesi: PENDING | EXECUTING | FILLED | REJECTED | FAILED | PENDING_RECONCILIATION | CANCELLED | PENDING_APPROVAL.
+  status    String   @default("PENDING")
+  /// Emir kaynağı: MANUAL | AUTO_ENGINE | RISK_RULE (Faz 5: otomatik motor emirleri AUTO_ENGINE olarak işaretlenir).
+  source    String   @default("MANUAL")
+  /// Emri üreten analiz kaydı (izlenebilirlik).
+  analysisLogId String?
+  analysisLog AiAnalysisLog? @relation("OrderAnalysis", fields: [analysisLogId], references: [id], onDelete: SetNull)
+  /// DenizBank işlem referansı (mutabakat + dekont).
+  transactionId String?
+  /// DenizBank ChannelSessionId (GetTransactionDetail için).
+  sessionId String?
+  /// Banka hata kodu (örn. 500201, 90004).
+  errorCode String?
+  /// Hata mesajı.
+  errorMessage String?
+  /// Deneme sayısı (retry politikası).
+  attemptCount Int    @default(0)
+  /// Satım gerçekleştiğinde hesaplanan net kâr/zarar (komisyon dahil, TL).
+  realizedPnl Decimal?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions AccountTransaction[]
+
+  @@index([status, createdAt(sort: Desc)])
+  @@index([stockId, createdAt(sort: Desc)])
+}
+
+/// Bekleyen emir — otomatik motorun ürettiği, admin onayı bekleyen emir taslağı.
+/// AdminSettings.autoTradeApprovalMode=MANUAL iken motor emri doğrudan yerine
+/// bu kaydı oluşturur; admin APPROVE/REJECT kararı verir, onaylanan emir
+/// TradingService'e iletilir (Faz 1: veri modeli hazırlığı).
+model PendingOrder {
+  id        String   @id @default(cuid())
+  /// Emir taslağı (JSON): { side, symbol, quantity, price, analysisLogId, ... }.
+  orderData Json
+  /// Onay durumu: PENDING | APPROVED | REJECTED.
+  status    String   @default("PENDING")
+  /// Admin gerekçesi (onay/red açıklaması — izlenebilirlik).
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([status, createdAt(sort: Desc)])
+}
+
+// ============================================================
+// HABER & AI ANALİZİ
+// ============================================================
+
+/// Haber makalesi — URL hash ile dedup edilir (NewsService).
+model NewsArticle {
+  id          String   @id @default(cuid())
+  /// Haber başlığı.
+  title       String
+  /// Haber özeti/içeriği.
+  summary     String
+  /// Haber URL'i.
+  url         String
+  /// Dedup anahtarı — URL'in SHA-256 hash'i.
+  urlHash     String   @unique
+  /// Kaynak adı (örn. "Google News").
+  source      String
+  /// Yayın tarihi.
+  publishedAt DateTime
+  /// LLM duygu analizi sonucu: POSITIVE | NEGATIVE | NEUTRAL.
+  sentiment   String?
+  /// Haber önem seviyesi: IMPORTANT | CRITICAL (null: normal önem düzeyi).
+  importanceLevel String?
+  /// LLM etki gerekçesi.
+  impactReasoning String?
+  /// Eşleşen hisseler.
+  stockId     String?
+  stock       Stock?   @relation(fields: [stockId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+
+  analyses    AiAnalysisLog[]
+
+  @@index([publishedAt(sort: Desc)])
+  @@index([stockId])
+}
+
+/// AI analiz kaydı — her LLM çağrısının izlenebilir kaydı (AnalysisService).
+model AiAnalysisLog {
+  id          String   @id @default(cuid())
+  stockId     String
+  stock       Stock    @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  /// Kullanılan AI sağlayıcı: GEMINI | OPENAI.
+  provider    String
+  /// Kullanılan model adı (örn. "gemini-2.0-flash").
+  model       String
+  /// LLM kararı: BUY | SELL | HOLD.
+  action      String
+  /// Güven skoru 0.0–1.0.
+  confidence  Decimal 
+  /// Karar gerekçesi.
+  reasoning   String
+  /// Öne çıkan riskler (JSON array).
+  risks       String?
+  /// Ham LLM yanıtı (denetim amaçlı).
+  rawResponse String?
+  /// Zod doğrulama hatası (varsa — analiz FAILED kabul edilir).
+  validationError String?
+  /// Analizde kullanılan haber (varsa — izlenebilirlik).
+  newsArticleId String?
+  newsArticle NewsArticle? @relation(fields: [newsArticleId], references: [id], onDelete: SetNull)
+  /// Analizin ürettiği emir (varsa).
+  orders      Order[]  @relation("OrderAnalysis")
+  createdAt DateTime @default(now())
+
+  @@index([stockId, createdAt(sort: Desc)])
+}
+
+// ============================================================
+// AI KARARLARI & SOHBET (AI Kararları ekranı — /ai-decisions)
+// ============================================================
+
+/// Otomatik alım-satım AI karar kaydı — döngüdeki her hisse değerlendirmesi
+/// (JobRun'dan daha granüler; AI Kararları akışının veri kaynağı).
+model AiDecisionLog {
+  id      String   @id @default(cuid())
+  /// İlişkili otomatik döngü kaydı (JobRun.id — izlenebilirlik).
+  jobRunId String?
+  /// Denormalize sembol — Stock ilişkisi kopmuş olsa da listede gösterilir.
+  symbol  String
+  /// Karar: BUY | SELL | HOLD | SKIP (SKIP: sinyal emre dönüşmedi).
+  action  String
+  /// AI'ın araştırma bulguları — karar anı bağlamı (fiyat/pozisyon/riskler).
+  research String?
+  /// AI'ın değerlendirmesi — karara nasıl vardığı (neden aldı/sattı/bekledi).
+  reasoning String?
+  /// İç konuşma / düşünce akışı (reasoning model çıktısı — varsa).
+  innerMonologue String?
+  /// Güven skoru 0–100.
+  confidence Int?
+  /// Bu kararla emir verildi mi?
+  orderPlaced Boolean @default(false)
+  /// Emir adedi (verildiyse).
+  quantity Decimal?
+  /// Karar anı fiyatı (TL).
+  price   Decimal?
+  /// Sinyalin emre dönüşmemesi nedeni (SKIP kararlarında).
+  skipReason String?
+  /// Kullanılan AI modeli.
+  model   String?
+  /// Kullanılan AI sağlayıcı (NVIDIA vb.).
+  provider String?
+  /// AI çağrı süresi (ms).
+  latencyMs Int?
+  createdAt DateTime @default(now())
+  /// İlişkili hisse (varsa — sembol denormalize tutulduğu için ilişki opsiyoneldir).
+  stock   Stock?  @relation(fields: [stockId], references: [id], onDelete: SetNull)
+  stockId String?
+
+  @@index([createdAt(sort: Desc)])
+  @@index([symbol])
+  @@index([stockId])
+}
+
+/// AI Kararları sohbeti — kullanıcının soruları ve AI yanıtları
+/// (sayfa yenilendiğinde sohbet kaybolmasın diye kalıcıdır).
+model AiDecisionChat {
+  id        String   @id @default(cuid())
+  /// Mesaj sahibi: USER | ASSISTANT.
+  role      String
+  /// Mesaj içeriği.
+  content   String
+  /// Yanıtı üreten AI modeli (ASSISTANT mesajlarında).
+  model     String?
+  /// Yanıtı üreten sağlayıcı (ASSISTANT mesajlarında).
+  provider  String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+}
+
+// ============================================================
+// İZLEME LİSTESİ
+// ============================================================
+
+/// İzleme listesi — otomatik analiz döngüsünün kapsadığı hisseler.
+model Watchlist {
+  id        String   @id @default(cuid())
+  stockId   String
+  stock     Stock    @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  /// İzleme listesine eklenme zamanı.
+  createdAt DateTime @default(now())
+  /// Otomatik analiz motoru bu hisseyi kapsasın mı?
+  autoAnalyze Boolean @default(true)
+  /// Kayıt kaynağı: MANUAL (kullanıcı elle ekledi) | BIST100 (otomatik BIST 100 senkronu).
+  /// BIST 100 senkronu yalnızca source=BIST100 kayıtlarını yönetir; MANUAL
+  /// kayıtlara asla dokunulmaz (kullanıcı verisi korunur).
+  source      String   @default("MANUAL")
+
+  @@unique([stockId])
+}
+
+// ============================================================
+// YÖNETİM AYARLARI (tek satır — singleton)
+// ============================================================
+
+/// Admin ayarları — platformun tekil yapılandırma kaydı (SettingsService).
+model AdminSettings {
+  id        String   @id @default("singleton")
+  /// Ticaret modu: PAPER | LIVE (ADR-2 — Strategy Pattern anahtarı).
+  tradingMode String @default("PAPER")
+  /// Canlı moda ilk geçiş onay damgası (Bölüm 3.3 adım 5).
+  liveModeConfirmedAt DateTime?
+  /// Aktif AI sağlayıcı: GEMINI | OPENAI | ANTHROPIC | DEEPSEEK | GROK | MISTRAL | NVIDIA | CUSTOM.
+  /// (SQLite'ta String + TS union tipi — src/lib/types.ts AiProvider.)
+  aiProvider String  @default("GEMINI")
+  /// Google Gemini API anahtarı (server-side; client'a asla plain dönmez).
+  geminiApiKey String @default("")
+  /// OpenAI API anahtarı.
+  openaiApiKey String @default("")
+  /// Anthropic Claude API anahtarı (sk-ant-…).
+  anthropicApiKey String @default("")
+  /// DeepSeek API anahtarı.
+  deepseekApiKey String @default("")
+  /// xAI Grok API anahtarı.
+  grokApiKey String @default("")
+  /// Mistral API anahtarı.
+  mistralApiKey String @default("")
+  /// NVIDIA NIM API anahtarı (nvapi-…).
+  nvidiaApiKey String @default("")
+  /// Local/custom sağlayıcı için OpenAI-uyumlu base URL
+  /// (örn. http://localhost:11434/v1 Ollama, http://localhost:1234/v1 LM Studio).
+  customBaseUrl String?
+  /// Local/custom sağlayıcı API anahtarı — local AI'larda genellikle gerekmez (opsiyonel).
+  customApiKey String @default("")
+  /// Local/custom sağlayıcı model adı (örn. llama3.2, qwen2.5, mistral-7b-instruct).
+  customModel String @default("")
+  /// Seçili Gemini modeli.
+  geminiModel String @default("gemini-2.0-flash")
+  /// Seçili OpenAI modeli.
+  openaiModel String @default("gpt-4o")
+  /// Seçili Anthropic modeli.
+  anthropicModel String @default("claude-sonnet-4-5")
+  /// Seçili DeepSeek modeli.
+  deepseekModel String @default("deepseek-chat")
+  /// Seçili Grok modeli.
+  grokModel String @default("grok-4")
+  /// Seçili Mistral modeli.
+  mistralModel String @default("mistral-small-latest")
+  /// Seçili NVIDIA NIM modeli (örn. moonshotai/kimi-k3).
+  nvidiaModel String @default("moonshotai/kimi-k3")
+  /// Hisse analiz sistem promptu (dinamik — admin panelinden düzenlenir).
+  systemPrompt String
+  /// Haber tarama promptu.
+  newsScanPrompt String
+  /// Stop-loss yüzdesi (0–100).
+  stopLossPercent Decimal @default(5)
+  /// Take-profit yüzdesi (0–100).
+  takeProfitPercent Decimal @default(10)
+  /// İşlem komisyon oranı (yüzde; örn. 0.1 = %0,1). Paper ve canlı emirlerde uygulanır.
+  commissionRate Decimal @default(0.1)
+  /// Minimum güven skoru eşiği (0–1) — altındaki analizler emir üretmez.
+  minConfidenceThreshold Decimal @default(0.7)
+  /// Tek pozisyon için maksimum tutar (TL).
+  maxPositionValue Decimal @default(50000)
+  /// Maksimum eşzamanlı açık pozisyon sayısı.
+  maxOpenPositions Int @default(5)
+  /// Günlük toplam emir bütçesi (TL).
+  dailyOrderBudget Decimal @default(100000)
+  /// Günlük maksimum zarar limiti (TL).
+  maxDailyLossLimit Decimal @default(5000)
+  /// Aynı sembol için iki analiz arası minimum süre (dakika).
+  cooldownMinutes Int @default(60)
+  /// Fiyat kaynağı: YAHOO (gerçek BIST fiyatları — Yahoo Finance) | SIMULATED (yedek simülatör).
+  priceSource String @default("YAHOO")
+  /// Faz 5: Otomatik alım-satım motoru açık mı? (Kapalıyken döngü no-op loglar.)
+  autoTradingEnabled Boolean @default(false)
+  /// Faz 5: Otomatik döngü çalışma aralığı (saniye) — scheduler bunu okur.
+  autoTradeIntervalSeconds Int @default(60)
+  /// Otomatik alım-satım onay modu: MANUAL (admin onayı gerekir) | AUTO (otomatik onay).
+  autoTradeApprovalMode String @default("MANUAL")
+  /// Otomatik alım emirleri için maksimum tutar (TL) — üst sınır.
+  maxBuyAmount Decimal @default(10000)
+  /// Otomatik satım emirleri için maksimum tutar (TL) — üst sınır.
+  maxSellAmount Decimal @default(10000)
+  /// Aktif haber kaynakları (JSON array of NewsSourceId).
+  newsSources String @default("[\"GOOGLE_NEWS\"]")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================
+// API ÇAĞRI LOGLARI & ZAMANLANMIŞ GÖREVLER
+// ============================================================
+
+/// DenizBank ham istek/yanıt kaydı — mutabakat ve denetim izi (ADR-3, ADR-6).
+model ApiCallLog {
+  id        String   @id @default(cuid())
+  /// Çağrılan endpoint (örn. "ChangeExchange").
+  endpoint  String
+  /// Ham istek gövdesi (AppKey maskeli).
+  requestBody String
+  /// Ham yanıt gövdesi.
+  responseBody String?
+  /// HTTP durum kodu.
+  httpStatus Int?
+  /// Hata sınıfı: TRANSIENT | PERMANENT | DEFERRED | UNKNOWN.
+  errorClass String?
+  /// Banka hata kodu.
+  errorCode String?
+  /// Süre (ms).
+  durationMs Int?
+  createdAt DateTime @default(now())
+
+  @@index([endpoint, createdAt(sort: Desc)])
+}
+
+/// K/Z sıfırlama damgası — singleton kayıt. resetAt'ten SONRA gerçekleşen
+/// SELL emirleri K/Z hesaplarına (özet kartı + grafikler) dahil edilir;
+/// emir geçmişi asla silinmez (denetim izi korunur). Kayıt yoksa sıfırlama
+/// yapılmamış demektir ve tüm emirler hesaba katılır.
+model PnlReset {
+  id      String   @id @default("singleton")
+  /// Son sıfırlama zamanı — bu andan sonraki emirler hesaba katılır.
+  resetAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// Zamanlanmış görev çalışma kaydı — ADR-10 (Vercel Cron + Job pattern).
+model JobRun {
+  id        String   @id @default(cuid())
+  /// Görev türü: FETCH_PRICES | SCAN_NEWS | RUN_ANALYSIS | CHECK_ORDERS | RECONCILIATION | SYNC_BALANCE.
+  jobType   String
+  /// Görev sonucu: RUNNING | SUCCESS | FAILED.
+  status    String   @default("RUNNING")
+  /// Başlangıç zamanı.
+  startedAt DateTime @default(now())
+  /// Bitiş zamanı (varsa).
+  finishedAt DateTime?
+  /// İşlenen kayıt sayısı (örn. çekilen fiyat/haber adedi).
+  processedCount Int @default(0)
+  /// Hata mesajı (FAILED durumunda).
+  errorMessage String?
+  /// Görev detay özeti (JSON).
+  resultSummary String?
+
+  @@index([jobType, startedAt(sort: Desc)])
+}

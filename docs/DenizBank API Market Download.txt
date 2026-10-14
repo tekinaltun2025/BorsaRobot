@@ -1,0 +1,5899 @@
+DenizBank API Market
+Download OpenAPI specification:Download
+
+Accounts
+GetAccountDetail
+Brings the detailed information about an account / Hesap detay bilgilerini gösterir
+
+Request Body schema: application/json
+GetAccountDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAccountDetail response object
+Response Schema: */*
+Data	
+object
+
+post
+/GetAccountDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAccountList
+Shows the account list / Hesap listesini gösterir
+
+Request Body schema: application/json
+GetAccountList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAccountList response object
+
+post
+/GetAccountList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAccountTransactionList
+Shows the account transactions / Hesap hareketlerini gösterir
+
+Request Body schema: application/json
+GetAccountTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAccountTransactionList response object
+
+post
+/GetAccountTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCancelledAccountTransactionList
+Lists the canceled account transactions of a desired account / İstenilen hesaptaki iptal edilen işlemi listeler
+
+Request Body schema: application/json
+GetCancelledAccountTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCancelledAccountTransactionList response object
+
+post
+/GetCancelledAccountTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCorporateAccountTransactionList
+Brings corporate account transactions / Firma hesap hareketlerini gösterir
+
+The parameters that correspond to the values are; {IslemDetay1},{IslemDetay2},{IslemDetay3},{IslemDetay4},{IslemDetay5}
+Invoice Collections and Corporate / Tax Payments
+Gas, Water, Electricity and Telephone, GSM Bill Payments: {Invoice institution code},{Subscriber number},{Invoice number},{Invoice date},{Special reference information}
+SGK Payments: {Registration number},{Accrual number “@@@" Accrual Date},{Unemployment insurance amount},{Premium amount},{Stamp Tax Amount}
+For Customs Duty Payments: {Declaration Number “@@@” Serial Number},{Date},{Tax Code},{Payment amount},{Stamp duty Amount}
+Other Tax Payments: {Tax Number},{Tax Type and Name},{Tax Amount},{},{}
+Incoming-Outgoing Wire Transfer
+Wire transactions: {Transaction description},{},{},{},{}
+Check Transactions
+Check transactions charged to the account: {Check City code “@@@” Check number},{Check bank code “@@@” Check account number},{Check Image Number},{Check Reference (if applicable)},{Check due date}
+DBS Operations
+For DBS transactions that are charged to the account: {Invoice Institution code},{Subscriber number},{Invoice number},{Invoice date},{Special reference information}
+Fastpay Transactions
+Fast For Fastpay Transactions Charged To the Account: {Sender Information},{Sender Phone Number},{TCKN-VKN},{},{}
+Bulk Payment Transactions
+In the case of mass payment transactions that have passed out of the account: {},{},{},{},{}
+Foreign Exchange Buying and Selling Operations
+Foreign exchange purchase and sale transactions made from the account: {Currency Codes (Buy & Sell)},{Exchange Rate},{},{},{}
+Günsonu sırasında gerçekleşen işlemler için dikkat edilmesi gereken noktalar:
+Error Code	Description
+201005	Start date cannot be larger than end date.
+201004	Start and end date range too much.
+201003	Error retrieving account information.
+201002	Invalid IBAN number.
+201001	Account not found.
+Request Body schema: application/json
+GetCorporateAccountTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCorporateAccountTransactionList response object
+
+post
+/GetCorporateAccountTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetReceiptData
+Provides transaction receipt / Dekont gösterimi yapar
+
+Request Body schema: application/json
+GetReceiptData request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetReceiptData response object
+
+post
+/GetReceiptData
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+OpenAccount
+Opens time deposit account / Vadeli mevduat hesabı açar
+“InterestRate” information from the result of the GetDepositAccountInterest method is used in this method. If the process is to be proceeded with the term selection, “Term” information is obtained through the “GetDepositAcountDaysCount“ method.
+
+Request Body schema: application/json
+OpenAccount request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 OpenAccount response object
+
+post
+/OpenAccount
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Change Exchange
+ChangeExchange
+Carries out foreign currency buying and selling transactions / Döviz alım satım işlemlerini gerçekleştirir.
+The TransactionType field for the sales transaction must be the amount of currency to be sold in the Exchange, Amount field, and TL in the ConvertedAmount field. The TransactionType field for the purchase transaction must be the amount of the currency to be traded in the ConvertedAmount field, and TL in the Amount field.
+
+Request Body schema: application/json
+ChangeExchange request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ChangeExchange response object
+
+post
+/ChangeExchange
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CheckChangeExchangeReservationDailyVolume
+Controls daily change exchange limit / Günlük döviz alım satım limitini kontrol eder
+
+Request Body schema: application/json
+CheckChangeExchangeReservationDailyVolume request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CheckChangeExchangeReservationDailyVolume response object
+
+post
+/CheckChangeExchangeReservationDailyVolume
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCurrencyRateList
+Shows the currency rate list / Kur oran listesini gösterir
+
+Request Body schema: application/json
+GetCurrencyRateList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCurrencyRateList response object
+
+post
+/GetCurrencyRateList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetKgvInfo
+Informs about how much tax will be deducted while trading foreign currency / Döviz alım satım işlemlerinde doğacak Kambiyo Gider Vergisi bilgisini gösterir
+
+Request Body schema: application/json
+GetKgvInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetKgvInfo response object
+
+post
+/GetKgvInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetRateReservationParameter
+Show currency reservation information / Kur rezervasyon bilgisini gösterir
+
+Request Body schema: application/json
+GetRateReservationParameter request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetRateReservationParameter response object
+
+post
+/GetRateReservationParameter
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Common
+CheckIBANNumber
+Checks if IBAN Number is valid or not / IBAN'ın geçerli olup olmadığını kontrol eder
+
+Request Body schema: application/json
+CheckIBANNumber request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CheckIBANNumber response object
+
+post
+/CheckIBANNumber
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAtms
+Brings the Denizbank's ATM locations / Denizbank ATM'lerini gösterir
+
+Request Body schema: application/json
+GetAtms request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAtms response object
+
+post
+/GetAtms
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetBranches
+Brings the Denizbank's branch locations / Denizbank şubelerini gösterir
+
+Request Body schema: application/json
+GetBranches request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetBranches response object
+
+post
+/GetBranches
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetBranchListInformation
+Brings the Denizbank's branch list / Denizbank şube listesini getirir
+
+Request Body schema: application/json
+GetBranchListInformation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetBranchListInformation response object
+
+post
+/GetBranchListInformation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetNearestBranchAtmList
+Shows the nearest ATM list / En yakın ATM'leri listeler
+
+Request Body schema: application/json
+GetNearestBranchAtmList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetNearestBranchAtmList response object
+
+post
+/GetNearestBranchAtmList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Credit
+CalculateCreditPaymentPlan
+Provides the repayment plan of loan / Kredi için ödeme planı oluşturur
+
+Request Body schema: application/json
+CalculateCreditPaymentPlan request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CalculateCreditPaymentPlan response object
+
+post
+/CalculateCreditPaymentPlan
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditAccountList
+Shows the customer's credit accounts / Müşterinin kredi hesabını gösterir
+
+Request Body schema: application/json
+GetCreditAccountList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditAccountList response object
+
+post
+/GetCreditAccountList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditDetail
+Shows the credit details / Kredi detaylarını gösterir
+
+Request Body schema: application/json
+GetCreditDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditDetail response object
+
+post
+/GetCreditDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditLoanDetail
+Shows debt information for individual loans / Bireysel kredi detayını gösterir
+
+Request Body schema: application/json
+GetCreditLoanDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditLoanDetail response object
+
+post
+/GetCreditLoanDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditPaymentPlan
+Creates payment plan for individual loan / Bireysel kredi ödeme planı oluşturur
+
+Request Body schema: application/json
+GetCreditPaymentPlan request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditPaymentPlan response object
+
+post
+/GetCreditPaymentPlan
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RetractFastCreditApplication
+Retracts the fast credit application / Hızlı kredi başvurusunu geri çeker
+
+Request Body schema: application/json
+RetractFastCreditApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RetractFastCreditApplication response object
+
+post
+/RetractFastCreditApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CancelFastCreditApplication
+Cancels fast credit application / Hızlı kredi başvurunu iptal eder
+
+Request Body schema: application/json
+CancelFastCreditApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CancelFastCreditApplication response object
+
+post
+/CancelFastCreditApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Credit Card
+CardNumberValidationControl
+Checks if card number is valid or not / Kart numarasının geçerli olup olmadığını kontrol eder
+
+Request Body schema: application/json
+CardNumberValidationControl request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CardNumberValidationControl response object
+
+post
+/CardNumberValidationControl
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CashAdvance
+Makes cash advance transactions / Nakit avans işlemlerini yapar
+
+Request Body schema: application/json
+CashAdvance request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CashAdvance response object
+
+post
+/CashAdvance
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+FastCreditCardApplication
+Creates online application for credit card / Online kredi kartı başvurusu gerçekleştirir
+
+Request Body schema: application/json
+FastCreditCardApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 FastCreditCardApplication response object
+
+post
+/FastCreditCardApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAutoPaymentInfo
+Gets information if the credit card has an automatic payment order / Otomatik ödeme bilgisi getirir
+
+Request Body schema: application/json
+GetAutoPaymentInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAutoPaymentInfo response object
+
+post
+/GetAutoPaymentInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCardStatuInfo
+Shows credit card status information / Kredi kartının statü bilgilerini gösterir
+
+Request Body schema: application/json
+GetCardStatuInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCardStatuInfo response object
+
+post
+/GetCardStatuInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCardSummaryInfo
+Shows the summary information of the card / Kart özeti bilgisini gösterir
+
+Request Body schema: application/json
+GetCardSummaryInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCardSummaryInfo response object
+
+post
+/GetCardSummaryInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCashAdvanceFee
+Calculates cash advance fee / Nakit avans ücret bilgisi gösterir
+
+Request Body schema: application/json
+GetCashAdvanceFee request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCashAdvanceFee response object
+
+post
+/GetCashAdvanceFee
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditCardList
+Returns the credit card list / Kredi kartı listesi gösterir
+
+Request Body schema: application/json
+GetCreditCardList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditCardList response object
+
+post
+/GetCreditCardList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditCardTransactionList
+Returns the credit card transaction list / Kredi kartı işlemlerini gösterir
+
+Request Body schema: application/json
+GetCreditCardTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditCardTransactionList response object
+
+post
+/GetCreditCardTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditCardWaitingProvisions
+Shows the transactions of credit card provision / Kredi kartı provizyonda bekleyen işlemleri gösterir
+
+Request Body schema: application/json
+GetCreditCardWaitingProvisions request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditCardWaitingProvisions response object
+
+post
+/GetCreditCardWaitingProvisions
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCustomerAllStatements
+Shows credit card statement / Kredi kartı ekstre bilgisini gösterir
+
+Request Body schema: application/json
+GetCustomerAllStatements request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCustomerAllStatements response object
+
+post
+/GetCustomerAllStatements
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCustomerNumberByCardNumber
+Brings customer number via credit card number / Kredi kartı numarasından müşteri numarasını çağırır
+
+Request Body schema: application/json
+GetCustomerNumberByCardNumber request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCustomerNumberByCardNumber response object
+
+post
+/GetCustomerNumberByCardNumber
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetShadowCardNumber
+Shows shadow card number via customer number / Müşteri numarasına istinaden gölge kart numarası gösterir
+
+Request Body schema: application/json
+GetShadowCardNumber request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetShadowCardNumber response object
+
+post
+/GetShadowCardNumber
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SimulateCashAdvance
+Simulates cash advance / Nakit avans simülasyonu
+
+Request Body schema: application/json
+SimulateCashAdvance request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SimulateCashAdvance response object
+
+post
+/SimulateCashAdvance
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+StatementView
+Shows credit card statements / Kredi kartı ekstre izleme servisi
+
+Request Body schema: application/json
+StatementView request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 StatementView response object
+
+post
+/StatementView
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+UpdateStatementDate
+Changes credit card last payment date / Kredi kartı ekstre kesim tarihi değişikliği sağlar
+Selection should be made from the appropriate dates except the current account cut-off date.
+
+Request Body schema: application/json
+UpdateStatementDate request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 UpdateStatementDate response object
+
+post
+/UpdateStatementDate
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+VerifyFastCreditCardApplication
+Verifies online credit card application / Online kredi kartı başvurusunu doğrular
+
+Request Body schema: application/json
+VerifyFastCreditCardApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 VerifyFastCreditCardApplication response object
+
+post
+/VerifyFastCreditCardApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+VirtualCardCancel
+Cancels virtual card / Sanal kart iptali
+
+Request Body schema: application/json
+VirtualCardCancel request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 VirtualCardCancel response object
+
+post
+/VirtualCardCancel
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+VirtualCardCreate
+Creates virtual card / Sanal kart oluşturma
+
+Request Body schema: application/json
+VirtualCardCreate request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 VirtualCardCreate response object
+
+post
+/VirtualCardCreate
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+VirtualCardUpdate
+Updates virtual card limit / Sanal kart limit güncelleme
+
+Request Body schema: application/json
+VirtualCardUpdate request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 VirtualCardUpdate response object
+
+post
+/VirtualCardUpdate
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CreditCardPayment
+Makes credit card payment / Kredi kartı ödemesi gerçekleştirir
+
+Request Body schema: application/json
+CreditCardPayment request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CreditCardPayment response object
+
+post
+/CreditCardPayment
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+DDS
+GetDbsInvoiceResultsList
+Shows DBS invoice payment results / DBS fatura ödeme sonuçlarını gösterir
+
+Request Body schema: application/json
+GetDbsInvoiceResultsList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetDbsInvoiceResultsList response object
+
+post
+/GetDbsInvoiceResultsList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetDbsLimitInfoList
+Shows DBS limit information / DBS bayi limit bilgisi gösterir
+
+Request Body schema: application/json
+GetDbsLimitInfoList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetDbsLimitInfoList response object
+
+post
+/GetDbsLimitInfoList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+InsertDbsInvoice
+Creates DBS invoice / DBS fatura girişi
+
+Request Body schema: application/json
+InsertDbsInvoice request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 InsertDbsInvoice response object
+
+post
+/InsertDbsInvoice
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Deposit Accounts
+GetDepositAccountInterestDetailsNew
+Calculates net and gross income of time deposit due to amount, date and interest rate given / Tutar, tarih, faiz oranı bilgilerine istinaden net ve brüt gelir hesaplaması yapar
+Net earnings and gross earnings information is received by entering information such as maturity start and end date, total amount, interest rate. “InterestRate” information from the result of the GetDepositAccountInterest method is used.
+
+Request Body schema: application/json
+GetDepositAccountInterestDetailsNew request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetDepositAccountInterestDetailsNew response object
+
+post
+/GetDepositAccountInterestDetailsNew
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetDepositAccountInterestRates
+Lists the time deposit interest rates / Vadeli mevduat faiz oranlarını gösterir
+Variable maturity rates for different currencies. Since the time deposit account will be opened, “ProductCode” field is changed to “VDLMEVD".
+
+Request Body schema: application/json
+GetDepositAccountInterestRates request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetDepositAccountInterestRates response object
+
+post
+/GetDepositAccountInterestRates
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetDepositAcountDaysCounts
+Calculates the number of days while opening time deposit account according to dates given / Girilen tarihe göre vadeli mevduat gün sayısını hesaplar
+The term account information to be opened comes from this method. This method should only be used if the term account will be opened by date selection. Parameter sending is not required in Request.
+
+Request Body schema: application/json
+GetDepositAcountDaysCounts request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetDepositAcountDaysCounts response object
+
+post
+/GetDepositAcountDaysCounts
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetInterestRate
+Brings interest rate for the customer / Müşterinin vadeli mevduat faiz oranını gösterir
+
+Request Body schema: application/json
+GetInterestRate request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetInterestRate response object
+
+post
+/GetInterestRate
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+NewDemandAccount
+Opening a Drawing Account / Yeni vadeli hesap açmayı sağlar
+
+Request Body schema: application/json
+NewDemandAccount request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 NewDemandAccount response object
+
+post
+/NewDemandAccount
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ECommerceLoan
+ApproveECommerceLoanDocuments
+Provides the customer to approve documents / Müşterinin dokümanları onaylamasını sağlar
+
+Request Body schema: application/json
+ApproveECommerceLoanDocuments request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ApproveECommerceLoanDocuments response object
+
+post
+/ApproveECommerceLoanDocuments
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CompleteECommerceLoanApplication
+Completes the loan process / Kredi başvurusunu tamamlar
+
+Request Body schema: application/json
+CompleteECommerceLoanApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CompleteECommerceLoanApplication response object
+
+post
+/CompleteECommerceLoanApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ECommerceLoanReconciliation
+Performs the reconciliation process of the loan / Kredi mutabakat servisi
+
+Request Body schema: application/json
+ECommerceLoanReconciliation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ECommerceLoanReconciliation response object
+
+post
+/ECommerceLoanReconciliation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EvaluateECommerceLoanBranch
+Shows the branch list according to the given criteria / Girilen kriterlere göre şube bilgisini gösterir
+
+Request Body schema: application/json
+EvaluateECommerceLoanBranch request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EvaluateECommerceLoanBranch response object
+
+post
+/EvaluateECommerceLoanBranch
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EvaluateECommerceLoanCustomer
+Checks if the SMS OTP code written by the customer is valid / Müşterinin girdiği SMS kodunu doğrular
+
+Request Body schema: application/json
+EvaluateECommerceLoanCustomer request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EvaluateECommerceLoanCustomer response object
+
+post
+/EvaluateECommerceLoanCustomer
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EvaluateECommerceLoanCustomerDetail
+Checks the customer information like adress, birth place, ID / Müşterinin adres, doğum yeri, TCKN gibi bilgilerin kontrolünü sağlar
+
+Request Body schema: application/json
+EvaluateECommerceLoanCustomerDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EvaluateECommerceLoanCustomerDetail response object
+
+post
+/EvaluateECommerceLoanCustomerDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EvaluateECommerceLoanPaymentTable
+Reproduces the payment table by modifying the maturity / Vade tarihine göre ödeme planını günceller
+
+Request Body schema: application/json
+EvaluateECommerceLoanPaymentTable request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EvaluateECommerceLoanPaymentTable response object
+
+post
+/EvaluateECommerceLoanPaymentTable
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EvaluateECommerceLoanScore
+Creates the score / Müşteri kredi skorunu gösterir
+
+Request Body schema: application/json
+EvaluateECommerceLoanScore request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EvaluateECommerceLoanScore response object
+
+post
+/EvaluateECommerceLoanScore
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanAvailableDates
+Brings appropriate days for the courier to the specified address / Belirlenen adres için uygun kurye tarihlerini gösterir
+
+Request Body schema: application/json
+GetECommerceLoanAvailableDates request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanAvailableDates response object
+
+post
+/GetECommerceLoanAvailableDates
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanBirthPlace
+Shows the birth place information / Doğum yeri bilgisini gösterir
+
+Request Body schema: application/json
+GetECommerceLoanBirthPlace request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanBirthPlace response object
+
+post
+/GetECommerceLoanBirthPlace
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanCustomerInformation
+Gets customer information / Müşteri bilgisi girişi sağlar
+
+Request Body schema: application/json
+GetECommerceLoanCustomerInformation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanCustomerInformation response object
+
+post
+/GetECommerceLoanCustomerInformation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanDealerConfiguration
+Gets subscription and app key information / Müşteri şifresini kontrol eder
+
+Request Body schema: application/json
+GetECommerceLoanDealerConfiguration request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanDealerConfiguration response object
+
+post
+/GetECommerceLoanDealerConfiguration
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanDigitalDocumentDetail
+Brings the details of the document by ID / Doküman detaylarını ID ile gösterir
+
+Request Body schema: application/json
+GetECommerceLoanDigitalDocumentDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanDigitalDocumentDetail response object
+
+post
+/GetECommerceLoanDigitalDocumentDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanDocuments
+Returns documents to be signed by the customer / Müşterinin imzalaması gereken dokümanları gösterir
+
+Request Body schema: application/json
+GetECommerceLoanDocuments request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanDocuments response object
+
+post
+/GetECommerceLoanDocuments
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanParameters
+Lists the necessary parameters for the loan / Kredinin gerekli parametrelerini listeler
+
+Request Body schema: application/json
+GetECommerceLoanParameters request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanParameters response object
+
+post
+/GetECommerceLoanParameters
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanPersonalDataSharingDocuments
+Shows required document and takes customer's GDPR permission / KVKK kapsamında bilgi paylaşım muvafakatnamesi alır
+
+Request Body schema: application/json
+GetECommerceLoanPersonalDataSharingDocuments request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanPersonalDataSharingDocuments response object
+
+post
+/GetECommerceLoanPersonalDataSharingDocuments
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetECommerceLoanSummarizedPaymentTable
+Brings summary paytable information.
+
+Request Body schema: application/json
+Brings summary of payment table information / Ödeme planı özeti gösterir
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetECommerceLoanSummarizedPaymentTable response object
+
+post
+/GetECommerceLoanSummarizedPaymentTable
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProceedECommerceLoanApplication
+Decides whether the loan process will start after chart application / Sepete ürün eklendikten sonra kredi sürecine devam edilip edilmeyeceğine karar verilmesi için kullanılır
+
+Request Body schema: application/json
+ProceedECommerceLoanApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProceedECommerceLoanApplication response object
+
+post
+/ProceedECommerceLoanApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+QueryECommerceLoanApplication
+Shows the status of the process / Akışın ne aşamada olduğunu gösterir
+
+Request Body schema: application/json
+QueryECommerceLoanApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 QueryECommerceLoanApplication response object
+
+post
+/QueryECommerceLoanApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RefundECommerceLoan
+Cancels the loan application / Başvurunun iptali için kullanılır
+
+Request Body schema: application/json
+RefundECommerceLoan request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RefundECommerceLoan response object
+
+post
+/RefundECommerceLoan
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SendECommerceLoanDigitalApprovalsToCustomer
+Sends digital confirmation to customer / Müşteriden dijital onay alınmasını sağlar
+
+Request Body schema: application/json
+SendECommerceLoanDigitalApprovalsToCustomer request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SendECommerceLoanDigitalApprovalsToCustomer response object
+
+post
+/SendECommerceLoanDigitalApprovalsToCustomer
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SendECommerceLoanOneTimePassword
+Provides the SMS OTP confirmation for beginning the application process / Başvuru teyidi için ilk SMS onayının alınmasını sağlar
+
+Request Body schema: application/json
+SendECommerceLoanOneTimePassword request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SendECommerceLoanOneTimePassword response object
+
+post
+/SendECommerceLoanOneTimePassword
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+StartECommerceLoanApplication
+Provides the SMS OTP confirmation for beginning the application process / Başvuru teyidi için ilk SMS onayının alınmasını sağlar
+
+Request Body schema: application/json
+StartECommerceLoanApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 StartECommerceLoanApplication response object
+
+post
+/StartECommerceLoanApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+UpdateECommerceLoanApplicationStatus
+Updates application status / Kredi başvuru statüsününü günceller
+
+Request Body schema: application/json
+UpdateECommerceLoanApplicationStatus request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 UpdateECommerceLoanApplicationStatus response object
+
+post
+/UpdateECommerceLoanApplicationStatus
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Factoring
+GetMobileFactoringHistory
+Lists the customer list applied to factoring / Faktoring müşteri başvurularını listeler
+
+Request Body schema: application/json
+GetMobileFactoringHistory request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetMobileFactoringHistory response object
+
+post
+/GetMobileFactoringHistory
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+InsertMobileFactoring
+Sends cheque information for factoring application / Faktorin başvurusu için çek bilgilerinin girişini sağlar
+
+Request Body schema: application/json
+InsertMobileFactoring request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 InsertMobileFactoring response object
+
+post
+/InsertMobileFactoring
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Fast
+AddEasyAddressDefinition
+Customer's easy address adding service / Müştelerin kolaylıkla adres ekleyebileceği servis
+
+Request Body schema: application/json
+AddEasyAddressDefinition request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 AddEasyAddressDefinition response object
+
+post
+/AddEasyAddressDefinition
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+DeleteEasyAddressDefinition
+Deletes easy address definition / KOLAS tanımını siler
+
+Request Body schema: application/json
+DeleteEasyAddressDefinition request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 DeleteEasyAddressDefinition response object
+
+post
+/DeleteEasyAddressDefinition
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAddressDefinitionByIdentityNo
+Brings defined easy address information / Tanımlı KOLAS listesini gösterir
+
+Request Body schema: application/json
+GetAddressDefinitionByIdentityNo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAddressDefinitionByIdentityNo response object
+
+post
+/GetAddressDefinitionByIdentityNo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAddressRecipientInformation
+Brings defined easy address receiver / KOLAS tanımlı alıcı bilgisini gösterir
+
+Request Body schema: application/json
+GetAddressRecipientInformation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAddressRecipientInformation response object
+
+post
+/GetAddressRecipientInformation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetFastParticipantBanks
+Querries participating banks of the FAST system / Fast sistemindeki bankaları sorgular
+
+Request Body schema: application/json
+GetFastParticipantBanks request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetFastParticipantBanks response object
+
+post
+/GetFastParticipantBanks
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetFastTransactionList
+Service that brings the transactions where the customer makes FAST money transfer / Müşterilerin FAST para transferi yaptığı yerdeki işlemleri gösteren servis
+
+Request Body schema: application/json
+GetFastTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetFastTransactionList response object
+
+post
+/GetFastTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RefundFastOrderTransaction
+Helps approving or rejecting incoming FAST refund request / İade gelen FAST transferinin kabul veya red işlemini gerçekleştirir
+
+Request Body schema: application/json
+RefundFastOrderTransaction request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RefundFastOrderTransaction response object
+
+post
+/RefundFastOrderTransaction
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RetrieveFastDemandTransaction
+Starts refund request for FAST transfer sent / Gönderilen FAST işlemi için iade talebi başlatır
+
+Request Body schema: application/json
+RetrieveFastDemandTransaction request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RetrieveFastDemandTransaction response object
+
+post
+/RetrieveFastDemandTransaction
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SendFastMoneyOrder
+Transfers money from FAST / FAST transfer işlemi
+MASAK Tedbirler Yönetmeliği, elektronik transferlerde; transfer emrinin verildiği finansal kuruluştan ödemeyi gerçekleştirecek finansal kuruluşa kadar oluşan mesaj zincirinde Amire ait bilgilerin aktarılması zorunlu hale gelmiştir.
+Bu yönetmeliğe uygun olarak aşağıdaki parametrelerin doldurulması zorunlu olmuştur.
+
+----Amir Bilgisi
+
+string SuperVisorName :Amir Adı
+string SuperVisorAccountNumber :Amir Hesap Numarası
+string SuperVisorIdentityNumber :Amir Kimlik Numarası
+string SuperVisorAddress :Amir Adresi
+string SuperVisorCountryCity :Ülke ve Şehir
+string SuperVisorBirthPlace :Amir Doğum Yeri
+DateTime SuperVisorBirthDate :Amir Doğum Tarihi
+string SuperVisorCustomerNumber :Amir Müşteri Numarası
+string AuthorizedPaymentServiceProvider :Yetkili Ödeme Hizmeti Sağlayıcı
+
+Request Body schema: application/json
+SendFastMoneyOrder request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SendFastMoneyOrder response object
+
+post
+/SendFastMoneyOrder
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+UpdateEasyAddressDefinition
+Updates easy address definition / KOLAS güncellemesi yapar
+
+Request Body schema: application/json
+UpdateEasyAddressDefinition request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 UpdateEasyAddressDefinition response object
+
+post
+/UpdateEasyAddressDefinition
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Fast Credit
+EnterFastCreditCustomerInfo
+Receives fast credit customer information / Hızlı kredi müşteri bilgileri girilir
+
+Request Body schema: application/json
+EnterFastCreditCustomerInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EnterFastCreditCustomerInfo response object
+
+post
+/EnterFastCreditCustomerInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EnterFastCreditDetailInfo
+Receives fast credit customer detailed information / Hızlı kredi müşteri detay bilgileri girilir
+
+Request Body schema: application/json
+EnterFastCreditDetailInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EnterFastCreditDetailInfo response object
+
+post
+/EnterFastCreditDetailInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+EnterFastCreditExtraInfo
+Receives fast credit customer extra information / Hızlı kredi müşteri ilave bilgileri girilir
+
+Request Body schema: application/json
+EnterFastCreditExtraInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 EnterFastCreditExtraInfo response object
+
+post
+/EnterFastCreditExtraInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+StartFastCreditApplication
+Provides online application for fast credit / Kredi başvurusu yapılmasını sağlar
+
+Request Body schema: application/json
+StartFastCreditApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 StartFastCreditApplication response object
+
+post
+/StartFastCreditApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Integration
+CancelApiTransaction
+Cancels API transaction / oAuth ile başlatılan işlemi iptal eder
+
+Request Body schema: application/json
+CancelApiTransaction request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CancelApiTransaction response object
+
+post
+/CancelApiTransaction
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CreateApiTransactionRequest
+Starts transaction with oAuth service, that should include amount, a unique transaction id (RequestId) and the method information / oAuth ile işlem başlatılmasını sağlar, sorgu içerisinde tutar, tekil işlem kodu ve metot bilgisi yer almalıdır.
+
+Request Body schema: application/json
+CreateApiTransactionRequest request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CreateApiTransactionRequest response object
+
+post
+/CreateApiTransactionRequest
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetApiTransactionDetail
+Gets API transaction detail / oAuth ile başlatılan işlemin doğrulamasını sağlar
+
+Request Body schema: application/json
+GetApiTransactionDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetApiTransactionDetail response object
+
+post
+/GetApiTransactionDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Invoice
+CancelPayment
+Cancels invoice payment / Fatura ödeme iptal servisi
+
+Request Body schema: application/json
+CancelPayment request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CancelPayment response object
+
+post
+/CancelPayment
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAssociationCollectionGroups
+Responses invoice payment groups / Fatura ödeme gruplarını gösterir
+
+Request Body schema: application/json
+GetAssociationCollectionGroups request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAssociationCollectionGroups response object
+
+post
+/GetAssociationCollectionGroups
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetAssociationDetail
+Brings the institution required for payment / Fatura ödemede kullanılan kurum bilgisini gösterir
+
+Request Body schema: application/json
+GetAssociationDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAssociationDetail response object
+
+post
+/GetAssociationDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetAssociationList
+Brings the institution list / Fatura ödemede kurum listesini gösterir
+
+Request Body schema: application/json
+GetAssociationList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAssociationList response object
+
+post
+/GetAssociationList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCancelPaymentReconciliation
+Shows the active payments during the day / Gün içerisindeki aktif ödemeleri gösterir
+
+Request Body schema: application/json
+GetCancelPaymentReconciliation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCancelPaymentReconciliation response object
+
+post
+/GetCancelPaymentReconciliation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPaymentQueue
+Shows if the invoices are paid or not in the queue / Vergi kuyruk yapısı içerisinde faturaların ödenip ödenmediğini gösterir
+
+Request Body schema: application/json
+GetPaymentQueue request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPaymentQueue response object
+
+post
+/GetPaymentQueue
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPaymentReconciliation
+Provides a list of invoices that have been paid and canceled during the day / Gün içerisinde ödenmiş ya da iptal edilmiş faturaları gösterir
+
+Request Body schema: application/json
+GetPaymentReconciliation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPaymentReconciliation response object
+
+post
+/GetPaymentReconciliation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetScreenDefinition
+Gives the required parameters in the invoice inquiry based on Associations / Fatura ödemede kurum bazlı hangi parametrelerin gerektiği konusunda bilgi verir
+
+Request Body schema: application/json
+GetScreenDefinition request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetScreenDefinition response object
+
+post
+/GetScreenDefinition
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+InvoicePayment
+Makes invoice payment / Fatura ödeme servisi
+
+Request Body schema: application/json
+InvoicePayment request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 InvoicePayment response object
+
+post
+/InvoicePayment
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+QueryInvoices
+Querries invoice debt / Fatura borç sorgulama servisi
+
+Request Body schema: application/json
+QueryInvoices request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 QueryInvoices response object
+
+post
+/QueryInvoices
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Money Transfer
+GetStatusOfTransfer
+Gives the status of the money order (wire to name) transaction / İsme havale metodunun akibetini sorgula
+
+Request Body schema: application/json
+GetStatusOfTransfer request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetStatusOfTransfer response object
+
+post
+/GetStatusOfTransfer
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTransferStatus
+Query given EFT and money transfer transaction status / EFT ve havale işlemlerinin akıbetini sorgula
+
+Request Body schema: application/json
+GetTransferStatus request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTransferStatus response object
+
+post
+/GetTransferStatus
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetReturnedEftList
+Queries returned EFT transactions. / İade olan eft işlemlerini sorgular
+
+Request Body schema: application/json
+GetReturnedEftList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetReturnedEftList response object
+
+post
+/GetReturnedEftList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTransactionDetail
+Provides reconciliation for the transactions with TransactionID and SessionID if it succeeded or not / Yapılan işlemin TransactionID ve SessionID bilgisi ile gerçekleşip gerçekleşmediği mutabakatını sağlar
+
+Request Body schema: application/json
+GetTransactionDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTransactionDetail response object
+
+post
+/GetTransactionDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+MoneyOrder
+Transfers money between customer's own accounts / Müşterinin hesapları arasında virman işlemini gerçekleştirir
+
+Request Body schema: application/json
+MoneyOrder request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 MoneyOrder response object
+
+post
+/MoneyOrder
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessEftRequestToAccount
+EFT transaction to account / Hesaba EFT işlemi
+
+Error Code	Description
+90020	\tYou cannot perform this operation on work days except for {0} to {1}
+90012	This process is currently closed for use
+90004	Inadequate transaction limit. Please check and try again.
+
+daily transaction limit{0:#,##0.00} TL,
+remaining available limit {1:#,##0.00} TL
+1912201233	Your transaction is aborted due to security considirations.
+20502	Accounting Error received
+6066	Recurring wire transfer
+
+MASAK Tedbirler Yönetmeliği, elektronik transferlerde; transfer emrinin verildiği finansal kuruluştan ödemeyi gerçekleştirecek finansal kuruluşa kadar oluşan mesaj zincirinde Amire ait bilgilerin aktarılması zorunlu hale gelmiştir.
+Bu yönetmeliğe uygun olarak aşağıdaki parametrelerin doldurulması zorunlu olmuştur.
+
+----Amir Bilgisi
+
+string OrdererName :Amir Adı
+string OrdererAccountNumber :Amir Hesap Numarası
+string OrdererIdentificationNumber :Amir Kimlik Numarası
+string OrdererAddress :Amir Adresi
+string OrdererCountryandCity :Ülke ve Şehir
+string OrdererBirthPlace :Amir Doğum Yeri
+DateTime OrdererBirthDate :Amir Doğum Tarihi
+string SuperVisorCustomerNumber :Amir Müşteri Numarası
+string
+
+Amir bilgisi alanından en az biri dolu ise "Amir Adı" alanının da doldurulması zorunludur. Diğer alanların doldurulması zorunlu değildir.
+Request Body schema: application/json
+ProcessEftRequestToAccount request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessEftRequestToAccount response object
+
+post
+/ProcessEftRequestToAccount
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessEftRequestToIban
+EFT transaction to IBAN / IBANa EFT işlemi
+
+MASAK Tedbirler Yönetmeliği, elektronik transferlerde; transfer emrinin verildiği finansal kuruluştan ödemeyi gerçekleştirecek finansal kuruluşa kadar oluşan mesaj zincirinde Amire ait bilgilerin aktarılması zorunlu hale gelmiştir.
+Bu yönetmeliğe uygun olarak aşağıdaki parametrelerin doldurulması zorunlu olmuştur.
+
+----Amir Bilgisi
+
+string OrdererName :Amir Adı
+string OrdererAccountNumber :Amir Hesap Numarası
+string OrdererIdentificationNumber :Amir Kimlik Numarası
+string OrdererAddress :Amir Adresi
+string OrdererCountryandCity :Ülke ve Şehir
+string OrdererBirthPlace :Amir Doğum Yeri
+DateTime OrdererBirthDate :Amir Doğum Tarihi
+string SuperVisorCustomerNumber :Amir Müşteri Numarası
+string
+
+Amir bilgisi alanından en az biri dolu ise "Amir Adı" alanının da doldurulması zorunludur. Diğer alanların doldurulması zorunlu değildir.
+
+Request Body schema: application/json
+ProcessEftRequestToIban request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessEftRequestToIban response object
+
+post
+/ProcessEftRequestToIban
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessEFTRequestToOtherBankCCPayment
+EFT transaction to other bank's credit card / Başka banka kredi kartına EFT işlemi
+
+Request Body schema: application/json
+ProcessEFTRequestToOtherBankCCPayment request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessEFTRequestToOtherBankCCPayment response object
+
+post
+/ProcessEFTRequestToOtherBankCCPayment
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessScheduledTransactionForIbanEft
+Creates forward dated EFT order to IBAN / IBAN'a EFT işlemi için ileri tarihli işlem oluşturur
+
+Request Body schema: application/json
+ProcessScheduledTransactionForIbanEft request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessScheduledTransactionForIbanEft response object
+
+post
+/ProcessScheduledTransactionForIbanEft
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessScheduledTransactionForToAccountEft
+Creates forward dated EFT order to account / Hesaba EFT işlemi için ileri tarihli işlem oluşturur
+
+Request Body schema: application/json
+ProcessScheduledTransactionForToAccountEft request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessScheduledTransactionForToAccountEft response object
+
+post
+/ProcessScheduledTransactionForToAccountEft
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+QueryCorporatePaymentOrder
+Batch payment query service / Toplu ödeme sorgulama servisi
+
+Genel Hata Tipleri
+Servisten dönen hata mesajları SendCorporatePaymentOrder ve QueryCorporatePaymentOrder servislerinde “7895” hata kodu ile dönmektedir.
+[errType>] [durumu] [/errType>]
+[ errNone ] = Hata yok; mesajımız: “İşlem başarı ile tamamlandı.”}
+[ errSecurity ] = Güvenlik; mesajımız: “Güvenlik ile ilgili bir hata oluştu”
+[ errQuery ] = Sorgulama; mesajımız: “Sorgulama sonucunda kayıt dönmedi”
+[ errLoad ] = Yükleme; mesajımız: “Yolladığınız xml dosyası yüklenemedi”
+[ errResponse ] = Cevap; mesajımız: “Bankadan cevap alınamadı”
+[ errRecInsert ] = Kayıt; mesajımız: “Gönderilen bilgilerde bazı hatalar mevcut”
+[ errFormat ] = Desen Hatası
+[ errValue ] = Deger hatası
+Request Body schema: application/json
+QueryCorporatePaymentOrder request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 QueryCorporatePaymentOrder response object
+
+post
+/QueryCorporatePaymentOrder
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+QuerySwift
+Querries SWIFT transaction / SWIFT işlem sorgusu
+
+Request Body schema: application/json
+QuerySwift request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 QuerySwift response object
+
+post
+/QuerySwift
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+QuerySwiftMessages
+Querries SWIFT message / SWIFT mesaj sorgusu
+
+Request Body schema: application/json
+QuerySwiftMessages request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 QuerySwiftMessages response object
+
+post
+/QuerySwiftMessages
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RequestGoldWireToIBAN
+Wire gold transfer to IBAN / IBAN'a altın havale işlemi
+
+Request Body schema: application/json
+RequestGoldWireToIBAN request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RequestGoldWireToIBAN response object
+
+post
+/RequestGoldWireToIBAN
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RequestSwift
+Sends SWIFT request / SWIFT talebi başlatır
+
+Request Body schema: application/json
+RequestSwift request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RequestSwift response object
+
+post
+/RequestSwift
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RequestWireToAccount
+Wire transaction to account / Hesaba havale işlemi
+
+Error Code	Description
+6066	Recurring wire transfer
+30679	Receiver Account not found
+500201	Your account balance is insufficient
+90004	Inadequate transaction limit. Please check and try again.
+
+daily transaction limit{0:#,##0.00} TL,
+remaining available limit {1:#,##0.00} TL
+90012	This process is currently closed for use
+1912201233	Your transaction is aborted due to security considirations.
+Request Body schema: application/json
+RequestWireToAccount request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RequestWireToAccount response object
+
+post
+/RequestWireToAccount
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RequestWireToIBAN
+Wire transaction to IBAN / IBAN'a havale işlemi
+
+Error Code	Description
+60	The destination account is invalid.
+90004	Inadequate transaction limit. Please check and try again.
+
+daily transaction limit{0:#,##0.00} TL,
+remaining available limit {1:#,##0.00} TL
+30679	Receiver Account not found
+500201	Your account balance is insufficient
+90012	This process is currently closed for use
+6066	Recurring wire transfer
+1912201233	Your transaction is aborted due to security considirations.
+Request Body schema: application/json
+RequestWireToIBAN request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RequestWireToIBAN response object
+
+post
+/RequestWireToIBAN
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RequestWireToName
+Wire transaction to name / İsme havale işlemi
+
+Request Body schema: application/json
+RequestWireToName request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RequestWireToName response object
+
+post
+/RequestWireToName
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SendCorporatePaymentOrder
+Starts bulk payment order / Toplu ödeme başlatma servisi
+
+Genel Hata Tipleri
+Servisten dönen hata mesajları SendCorporatePaymentOrder ve QueryCorporatePaymentOrder servislerinde “7895” hata kodu ile dönmektedir.
+[errType>] [durumu] [/errType>]
+[ errNone ] = Hata yok; mesajımız: “İşlem başarı ile tamamlandı.”}
+[ errSecurity ] = Güvenlik; mesajımız: “Güvenlik ile ilgili bir hata oluştu”
+[ errQuery ] = Sorgulama; mesajımız: “Sorgulama sonucunda kayıt dönmedi”
+[ errLoad ] = Yükleme; mesajımız: “Yolladığınız xml dosyası yüklenemedi”
+[ errResponse ] = Cevap; mesajımız: “Bankadan cevap alınamadı”
+[ errRecInsert ] = Kayıt; mesajımız: “Gönderilen bilgilerde bazı hatalar mevcut”
+[ errFormat ] = Desen Hatası
+[ errValue ] = Deger hatası
+Request Body schema: application/json
+SendCorporatePaymentOrder request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SendCorporatePaymentOrder response object
+
+post
+/SendCorporatePaymentOrder
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+POS
+CreatePaymentFacilitator
+Creates sub merchant for PFs / PF Sanal POS alt üye işyeri oluşturmayı sağlar
+
+Request Body schema: application/json
+CreatePaymentFacilitator request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CreatePaymentFacilitator response object
+
+post
+/CreatePaymentFacilitator
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CreateSubMerchant
+It is a sub-office creation service.
+
+Request Body schema: application/json
+CreateSubMerchant request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CreateSubMerchant response object
+
+post
+/CreateSubMerchant
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosAccountDetail
+Brings POS transaction sum for the given date range (only for last two months) / Son iki ay için seçili tarih aralığında POS işlem toplamlarını gösterir
+
+Request Body schema: application/json
+GetPosAccountDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosAccountDetail response object
+
+post
+/GetPosAccountDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosBatchDetail
+Brings POS batch details / POS gün sonu işlem detayını gösterir
+
+Request Body schema: application/json
+GetPosBatchDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosBatchDetail response object
+
+post
+/GetPosBatchDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosBatchSummary
+Reconciliation of POS at the end of the day / POS gün sonu mutabakat servisi
+
+Request Body schema: application/json
+GetPosBatchSummary request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosBatchSummary response object
+
+post
+/GetPosBatchSummary
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosDailyTransactionList
+Shows daily POS transactions / Günlük POS hareketlerini gösterir
+
+Request Body schema: application/json
+GetPosDailyTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosDailyTransactionList response object
+
+post
+/GetPosDailyTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosEndOfDayList
+Brings the end of day list of the POS / POS gün sonu işlemlerini gösterir
+
+Request Body schema: application/json
+GetPosEndOfDayList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosEndOfDayList response object
+
+post
+/GetPosEndOfDayList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetPosList
+Lists POS member merchant information / POS üye işyeri bilgilerini listeler
+
+Request Body schema: application/json
+GetPosList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosList response object
+
+post
+/GetPosList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosStatementTransactionList
+Querries POS transaction statement according to transaction ID / POS işlemlerini işlem numarasıyla sorgulamak için kullanılır
+
+Request Body schema: application/json
+GetPosStatementTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosStatementTransactionList response object
+
+post
+/GetPosStatementTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPosTransactionList
+Lists the POS transactions in a given time range / POS'tan geçen işlemleri tarih aralığında listeler
+(Only transactions past the end of the day can be monitored in intra-period transactions.)
+
+Request Body schema: application/json
+GetPosTransactionList request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPosTransactionList response object
+
+post
+/GetPosTransactionList
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerMerchantsByLocation
+It is the service to which location-based merchant information is returned.
+
+Request Body schema: application/json
+GetProducerMerchantsByLocation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerMerchantsByLocation response object
+
+post
+/GetProducerMerchantsByLocation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Producer Card
+DoProducerCardCashAdvance
+Creates cash advance / Üretici kart nakit avans servisi
+
+Request Body schema: application/json
+DoProducerCardCashAdvance request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 DoProducerCardCashAdvance response object
+
+post
+/DoProducerCardCashAdvance
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+DoProducerCardInstallmentCashAdvance
+Provides cash advance payment service with installments / Üretici karttan taksitli nakit avans kullanımı sağlar
+
+Request Body schema: application/json
+DoProducerCardInstallmentCashAdvance request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 DoProducerCardInstallmentCashAdvance response object
+
+post
+/DoProducerCardInstallmentCashAdvance
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCashAdvanceInfo
+Provides information about cash advance payments / Üretici kart taksitli nakit avans kredi bilgilerini getirir
+
+Request Body schema: application/json
+GetCashAdvanceInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCashAdvanceInfo response object
+
+post
+/GetCashAdvanceInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerAgriculturalCardLimitIncreaseInfo
+Shows producer card limit increase information / Üretici kart limit artış bilgisini gösterir
+
+Request Body schema: application/json
+GetProducerAgriculturalCardLimitIncreaseInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerAgriculturalCardLimitIncreaseInfo response object
+
+post
+/GetProducerAgriculturalCardLimitIncreaseInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerAgriculturalCreditInfo
+Brings producer credit information / Üretici kredi bilgisini getirir
+
+Request Body schema: application/json
+GetProducerAgriculturalCreditInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerAgriculturalCreditInfo response object
+
+post
+/GetProducerAgriculturalCreditInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerAgriculturalPreApprovedLimitInfo
+Shows producer card pre-approved limit information / Üretici kart ön onaylı limit bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerAgriculturalPreApprovedLimitInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerAgriculturalPreApprovedLimitInfo response object
+
+post
+/GetProducerAgriculturalPreApprovedLimitInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerAgriculturalReadyLimitInfo
+Shows producer card ready limit information / Üretici kart hazır limit bilgisini gösterir
+
+Request Body schema: application/json
+GetProducerAgriculturalReadyLimitInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerAgriculturalReadyLimitInfo response object
+
+post
+/GetProducerAgriculturalReadyLimitInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardBalance
+Brings producer card balance information / Üretici kart borç bilgilerini getirir
+
+Request Body schema: application/json
+GetProducerCardBalance request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardBalance response object
+
+post
+/GetProducerCardBalance
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardCustomerPaymentInfo
+Shows producer card customer summary and payment information / Üretici kart müşteri özet ve ödeme bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerCardCustomerPaymentInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardCustomerPaymentInfo response object
+
+post
+/GetProducerCardCustomerPaymentInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardDetail
+Shows producer card detail information / Üretici kart bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerCardDetail request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardDetail response object
+
+post
+/GetProducerCardDetail
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardPayback
+Shows producer card payback information / Üretici kart geri ödeme bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerCardPayback request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardPayback response object
+
+post
+/GetProducerCardPayback
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardPeriodicTransactions
+Shows producer card periodic transaction information / Üretici kard periyodik işlem bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerCardPeriodicTransactions request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardPeriodicTransactions response object
+
+post
+/GetProducerCardPeriodicTransactions
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardRejectedTransactions
+Shows producer card's rejected transactions information / Üretici kart red işlem bilgilerini gösterir
+
+Request Body schema: application/json
+GetProducerCardRejectedTransactions request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardRejectedTransactions response object
+
+post
+/GetProducerCardRejectedTransactions
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetProducerCardStatementSummary
+Shows producer card statement summary / Üretici kart ekstre bilgisini gösterir
+
+Request Body schema: application/json
+GetProducerCardStatementSummary request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetProducerCardStatementSummary response object
+
+post
+/GetProducerCardStatementSummary
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+IncreaseProducerAgriculturalCardLimit
+Increases producer card limit / Üretici kart limit artırım servisi
+
+Request Body schema: application/json
+IncreaseProducerAgriculturalCardLimit request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 IncreaseProducerAgriculturalCardLimit response object
+
+post
+/IncreaseProducerAgriculturalCardLimit
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+PaybackProducerCard
+Makes producer card payment / Üretici kart ödeme servisi
+
+Request Body schema: application/json
+PaybackProducerCard request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 PaybackProducerCard response object
+
+post
+/PaybackProducerCard
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProducerCardPaymentPlan
+Calculates producer card cash advance payment table / Üretici kart taksitli nakit avans ödeme planı hesaplama servisi
+
+Request Body schema: application/json
+ProducerCardPaymentPlan request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProducerCardPaymentPlan response object
+
+post
+/ProducerCardPaymentPlan
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+SubmitProducerAgriculturalSMSFlow
+Submits producer card via SMS OTP / SMS ile üretici kart başvurusu sağlar
+
+Request Body schema: application/json
+SubmitProducerAgriculturalSMSFlow request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 SubmitProducerAgriculturalSMSFlow response object
+
+post
+/SubmitProducerAgriculturalSMSFlow
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RetailCredit
+ApplyCredit
+This method is mandatory and allows for the creation of a credit application.
+
+Request Body schema: application/json
+ApplyCredit request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ApplyCredit response object
+
+post
+/ApplyCredit
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+CheckCreditLimitAvailability
+The method returns the customers credit limit and payment plan based on their shopping cart for shopping credits or their personal information for wallet credits.
+
+Request Body schema: application/json
+CheckCreditLimitAvailability request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 CheckCreditLimitAvailability response object
+
+post
+/CheckCreditLimitAvailability
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditApplication
+This method allows you to retrieve information about a submitted credit application. It can be called at any time.
+
+Request Body schema: application/json
+GetCreditApplication request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditApplication response object
+
+post
+/GetCreditApplication
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditLimitOffersRequirement
+If the Super Limit structure will be used, it is mandatory to call this method in the flow, it is not mandatory in other cases.
+
+Request Body schema: application/json
+GetCreditLimitOffersRequirement request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditLimitOffersRequirement response object
+
+post
+/GetCreditLimitOffersRequirement
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditPaymentPlanInfo
+Provides detailed information about the payment plan, such as the amount of each installment, the due dates, and the interest rate, when needed.
+
+Request Body schema: application/json
+GetCreditPaymentPlanInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditPaymentPlanInfo response object
+
+post
+/GetCreditPaymentPlanInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetCreditPaymentPlanSimulation
+It is used to calculate the estimated payment plan before the flow is initiated and it is not mandatory to call.
+
+Request Body schema: application/json
+GetCreditPaymentPlanSimulation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetCreditPaymentPlanSimulation response object
+
+post
+/GetCreditPaymentPlanSimulation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetLimitOffers
+It returns the super limit scoring result information according to the customers response to the questions sent with GetCreditLimitOffersRequirement method.
+
+Request Body schema: application/json
+GetLimitOffers request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetLimitOffers response object
+
+post
+/GetLimitOffers
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+RefundCredit
+Allows for the partial or full refund of a loan.
+
+Request Body schema: application/json
+RefundCredit request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 RefundCredit response object
+
+post
+/RefundCredit
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+StartCredit
+The method that initiates the flow.
+
+Request Body schema: application/json
+StartCredit request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 StartCredit response object
+
+post
+/StartCredit
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+VerifyCreditOtp
+It is called if the IsOtpSend field in the response of the StartCredit method is true.
+
+Request Body schema: application/json
+VerifyCreditOtp request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 VerifyCreditOtp response object
+
+post
+/VerifyCreditOtp
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+Tax
+GetAllowedTaxCodes
+Lists allowed tax codes / İzin verilen vergi kodlarını gösterir
+
+Request Body schema: application/json
+GetAllowedTaxCodes request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetAllowedTaxCodes response object
+
+post
+/GetAllowedTaxCodes
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{ }
+]
+}
+GetParametersService
+Gives the parameters of the tax payment services / Vergi ödeme parametre bilgilerini iletir
+
+Request Body schema: application/json
+GetParametersService request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetParametersService response object
+
+post
+/GetParametersService
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetPaymentInfo
+Shows tax amount / Vergi tutarını gösterir
+
+Request Body schema: application/json
+GetPaymentInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetPaymentInfo response object
+
+post
+/GetPaymentInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTaxOfficeCodeFromPlate
+Querries tax number via plate / Levhadan vergi numarasını sorgular
+
+Request Body schema: application/json
+GetTaxOfficeCodeFromPlate request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTaxOfficeCodeFromPlate response object
+
+post
+/GetTaxOfficeCodeFromPlate
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTaxOffices
+Querries tax offices / Vergi ofislerini sorgular
+
+Request Body schema: application/json
+GetTaxOffices request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTaxOffices response object
+
+post
+/GetTaxOffices
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTaxPayment
+Lists tax payment information / Vergi ödeme bilgilerini listeler
+
+Request Body schema: application/json
+GetTaxPayment request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTaxPayment response object
+
+post
+/GetTaxPayment
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+GetTaxPeriodInformation
+Responses tax last payment term information / Vergi son ödeme vadesini getirir
+
+Request Body schema: application/json
+GetTaxPeriodInformation request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 GetTaxPeriodInformation response object
+
+post
+/GetTaxPeriodInformation
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+PayPassportTax
+Pays passport fee / Pasaport harcı ödemesi
+
+Request Body schema: application/json
+PayPassportTax request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 PayPassportTax response object
+
+post
+/PayPassportTax
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+PayTax
+Makes tax payments / Vergi ödeme servisi
+
+Request Body schema: application/json
+PayTax request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 PayTax response object
+
+post
+/PayTax
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}
+ProcessPaymentInfo
+Makes SGK, BAĞKUR payments / SGK, BAĞKUR ödeme servisi
+
+Request Body schema: application/json
+ProcessPaymentInfo request object
+
+Header	
+object (Header)
+Parameters	
+Array of objects
+Responses
+200 ProcessPaymentInfo response object
+
+post
+/ProcessPaymentInfo
+Request samples
+PayloadDene
+Content type
+application/json
+
+Copy
+Expand allCollapse all
+{
+"Header": {
+"AppKey": "coVU2MZkLX6nAGLmINrmbwvdJVQ8b2LfcLy4uJCQcRaZ6hFhON",
+"Channel": "API",
+"ChannelSessionId": "Her istekte farklı GUID değerler girilmeli",
+"ChannelRequestId": "Her istekte farklı GUID değerler girilmeli"
+},
+"Parameters": [
+{}
+]
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+:root {
+  --background: #0b0f17;
+  --surface: #111827;
+  --surface-border: #1f2937;
+  --foreground: #f9fafb;
+  --muted: #9ca3af;
+  --accent: #3b82f6;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Odak halkası — erişilebilirlik */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Haber ticker dikey kaydırma animasyonu */
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-vertical {
+  animation: scroll-vertical 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animasyon duraklatma (hover) */
+.animate-scroll-vertical:hover {
+  animation-play-state: paused;
+}
